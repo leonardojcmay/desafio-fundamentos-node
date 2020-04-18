@@ -7,6 +7,7 @@ class Transaction {
 
   value: number;
 
+  // income para entradas (depósitos) e outcome para saidas (retiradas)
   type: 'income' | 'outcome';
 
   constructor({ title, value, type }: Omit<Transaction, 'id'>) {
