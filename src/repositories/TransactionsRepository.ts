@@ -55,7 +55,6 @@ class TransactionsRepository {
 
     // adicionando transaction na listagem
     this.transactions.push(transaction);
-
     return transaction;
   }
 }

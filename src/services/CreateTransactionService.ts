@@ -1,5 +1,6 @@
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import Transaction from '../models/Transaction';
+import AppError from '../errors/AppError';
 
 interface Request {
   title: string;
@@ -22,6 +23,14 @@ class CreateTransactionService {
       value,
       type,
     });
+
+    const balance = this.transactionsRepository.getBalance();
+
+    console.log(balance.total);
+
+    if (balance.total < 0) {
+      throw new AppError('Saldo < Value outcome');
+    }
 
     return transaction;
   }
