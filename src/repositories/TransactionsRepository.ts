@@ -1,5 +1,6 @@
 import Transaction from '../models/Transaction';
 import Balance from '../models/Balance';
+import AppError from '../errors/AppError';
 
 // Data Transfer Object
 interface CreateTransactionDTO {
@@ -52,6 +53,14 @@ class TransactionsRepository {
   public create({ title, value, type }: CreateTransactionDTO): Transaction {
     // criando transactions
     const transaction = new Transaction({ title, value, type });
+
+    const balance = this.getBalance();
+
+    console.log(balance.total);
+
+    if (transaction.type === 'outcome' && value > balance.total) {
+      throw new AppError('Saldo < Value outcome');
+    }
 
     // adicionando transaction na listagem
     this.transactions.push(transaction);

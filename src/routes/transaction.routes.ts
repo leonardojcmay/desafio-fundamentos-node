@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import TransactionsRepository from '../repositories/TransactionsRepository';
 import CreateTransactionService from '../services/CreateTransactionService';
+import AppError from '../errors/AppError';
 
 const transactionRouter = Router();
 const transactionsRepository = new TransactionsRepository();

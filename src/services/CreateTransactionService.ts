@@ -24,14 +24,6 @@ class CreateTransactionService {
       type,
     });
 
-    const balance = this.transactionsRepository.getBalance();
-
-    console.log(balance.total);
-
-    if (balance.total < 0) {
-      throw new AppError('Saldo < Value outcome');
-    }
-
     return transaction;
   }
 }
